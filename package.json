@@ -1,10 +1,10 @@
 {
-  "name": "tauri-nextjs-template",
+  "name": "deneuro.me",
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "Your Name Here",
-    "email": "your-email-here@example.com"
+    "name": "Webber",
+    "email": "webber@takken.io"
   },
   "scripts": {
     "next-start": "cross-env BROWSER=none next dev",
@@ -16,9 +16,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@tauri-apps/api": "^1.5.3",
     "clsx": "^2.1.0",
     "next": "^14.1.0",
+    "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
