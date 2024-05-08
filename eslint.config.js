@@ -1,0 +1,51 @@
+import tsEslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import reactPlugin from 'eslint-plugin-react'
+import hooksPlugin from 'eslint-plugin-react-hooks'
+import nextPlugin from '@next/eslint-plugin-next'
+
+export default [
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+    plugins: {
+      react: reactPlugin,
+      'react-hooks': hooksPlugin,
+      '@next/next': nextPlugin,
+      '@typescript-eslint': tsEslint
+    },
+    rules: {
+      ...reactPlugin.configs['jsx-runtime'].rules,
+      ...hooksPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      ...tsEslint.configs.recommended.rules,
+      ...tsEslint.configs['strict-type-checked'].rules,
+      ...tsEslint.configs['stylistic-type-checked'].rules,
+      '@next/next/no-img-element': 'error',
+      eqeqeq: 'error',
+      'no-else-return': 'error',
+      'no-implicit-coercion': ['error', { disallowTemplateShorthand: true }],
+      'no-unneeded-ternary': 'error',
+      'no-useless-call': 'error',
+      'no-useless-computed-key': 'error',
+      'no-useless-concat': 'error',
+      // Bugged: TypeError: context.getAncestors is not a function
+      "@next/next/no-duplicate-head": 'off',
+      // Bugged: TypeError: context.getScope is not a function
+      'react-hooks/rules-of-hooks': 'off',
+      'prefer-const': 'error',
+      'prefer-rest-params': 'error',
+      'prefer-spread': 'error',
+      'prefer-template': 'error',
+      radix: ['error', 'always'],
+      'react-hooks/exhaustive-deps': 'error',
+      '@typescript-eslint/no-confusing-void-expression': 'off',
+    },
+  },
+]
