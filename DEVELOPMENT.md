@@ -83,7 +83,7 @@ built in. However, because we are not deploying the frontend onto Vercel directl
 optimizations must be disabled to properly build and export the frontend via SSG.
 As such, the
 [`unoptimized` property](https://nextjs.org/docs/api-reference/next/image#unoptimized)
-is set to true for the `next/image` component in the `next.config.mjs` configuration.
+is set to true for the `next/image` component in the `next.config.js` configuration.
 This will allow the image to be served as-is from source, without
 changes to its quality, size, or format.
 

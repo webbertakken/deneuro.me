@@ -1,8 +1,10 @@
 import tsEslint from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import reactPlugin from 'eslint-plugin-react'
-import hooksPlugin from 'eslint-plugin-react-hooks'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 import nextPlugin from '@next/eslint-plugin-next'
+import functionalPlugin from 'eslint-plugin-functional';
 
 export default [
   {
@@ -15,13 +17,17 @@ export default [
     },
     plugins: {
       react: reactPlugin,
-      'react-hooks': hooksPlugin,
+      'react-hooks': reactHooksPlugin,
       '@next/next': nextPlugin,
-      '@typescript-eslint': tsEslint
+      '@typescript-eslint': tsEslint,
+      functional: functionalPlugin,
+      'jsx-a11y': jsxA11yPlugin
     },
     rules: {
+      ...functionalPlugin.configs.recommended.rules,
+      ...jsxA11yPlugin.configs.recommended.rules,
       ...reactPlugin.configs['jsx-runtime'].rules,
-      ...hooksPlugin.configs.recommended.rules,
+      ...reactHooksPlugin.configs.recommended.rules,
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
       ...tsEslint.configs.recommended.rules,
