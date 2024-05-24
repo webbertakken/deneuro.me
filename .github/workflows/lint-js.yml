@@ -25,22 +25,22 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: git config --global core.autocrlf false
 
-      - name: Checkout repository code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up pnpm package manager
-        uses: pnpm/action-setup@v2
+      - name: Install package manager (from package.json)
+        run: |
+          corepack enable
+          corepack install
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version-file: package.json
+          cache: 'yarn'
 
-      - name: Set up Node.js v18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "pnpm"
-
-      - name: Install dependencies from lockfile
-        run: pnpm install --frozen-lockfile
+      - name: Install deps
+        run: yarn install --frozen-lockfile --immutable
 
       - name: Run lint step
-        run: pnpm lint
+        run: yarn lint
