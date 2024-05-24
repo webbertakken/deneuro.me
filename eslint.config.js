@@ -8,6 +8,9 @@ import functionalPlugin from 'eslint-plugin-functional';
 
 export default [
   {
+    ignores: ['**/node_modules/**', '.next/**', 'dist/**', 'src-tauri/**', '.yarn/**']
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,
@@ -20,11 +23,11 @@ export default [
       'react-hooks': reactHooksPlugin,
       '@next/next': nextPlugin,
       '@typescript-eslint': tsEslint,
-      functional: functionalPlugin,
+      // functional: functionalPlugin,
       'jsx-a11y': jsxA11yPlugin
     },
     rules: {
-      ...functionalPlugin.configs.recommended.rules,
+      // ...functionalPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
       ...reactPlugin.configs['jsx-runtime'].rules,
       ...reactHooksPlugin.configs.recommended.rules,
@@ -52,6 +55,7 @@ export default [
       radix: ['error', 'always'],
       'react-hooks/exhaustive-deps': 'error',
       '@typescript-eslint/no-confusing-void-expression': 'off',
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }]
     },
   },
 ]
