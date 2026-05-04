@@ -17,15 +17,15 @@ on:
 
 jobs:
   build:
+    # Skip on PRs: pre-existing wry/webkit2gtk system-lib API rot would
+    # block all PRs until tauri 1.x -> 2 upgrade. Still runs on push.
+    if: github.event_name == 'push'
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
-    # Pre-existing wry/webkit2gtk crate vs system lib API mismatch on
-    # tauri 1.x — needs tauri 2 upgrade to fix. Don't block PRs.
-    continue-on-error: true
 
     steps:
       - name: Disable git core.autocrlf on Windows
