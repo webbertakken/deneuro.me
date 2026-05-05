@@ -1,15 +1,9 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/SocialIcons'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -82,13 +76,7 @@ function Newsletter() {
 }
 
 function Photos() {
-  const rotations = [
-    'rotate-2',
-    '-rotate-2',
-    'rotate-2',
-    'rotate-2',
-    '-rotate-2',
-  ]
+  const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
   return (
     <div className="mt-16 sm:mt-20">
@@ -123,29 +111,16 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
-              href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="#"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="#"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
+            <SocialLink href="#" aria-label="Follow on Instagram" icon={InstagramIcon} />
+            <SocialLink href="#" aria-label="Follow on GitHub" icon={GitHubIcon} />
+            <SocialLink href="#" aria-label="Follow on LinkedIn" icon={LinkedInIcon} />
           </div>
         </div>
       </Container>

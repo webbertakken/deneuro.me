@@ -117,18 +117,18 @@ Example using Tauri's `invoke` function:
 
 ```typescript
 // Generalized file containing all the invoke functions we need to fetch data from Rust
-import { invoke } from "@tauri-apps/api/tauri"
+import { invoke } from '@tauri-apps/api/tauri'
 
 const loadFoo = (): Promise<string> => {
-  return invoke<string>("invoke_handler_foo")
+  return invoke<string>('invoke_handler_foo')
 }
 
 const loadBar = (): Promise<string> => {
-  return invoke<string>("invoke_handler_bar")
+  return invoke<string>('invoke_handler_bar')
 }
 
 const loadBaz = (): Promise<string> => {
-  return invoke<string>("invoke_handler_baz")
+  return invoke<string>('invoke_handler_baz')
 }
 
 // and so on ...
@@ -146,19 +146,19 @@ const loadBaz = (): Promise<string> => {
 // import { invoke } from "@tauri-apps/api/tauri"  <-- remove this!
 //
 
-import { InvokeArgs } from "@tauri-apps/api/tauri"
+import { InvokeArgs } from '@tauri-apps/api/tauri'
 type InvokeFunction = <T>(cmd: string, args?: InvokeArgs | undefined) => Promise<T>
 
 const loadFoo = (invoke: InvokeFunction): Promise<string> => {
-  return invoke<string>("invoke_handler_foo")
+  return invoke<string>('invoke_handler_foo')
 }
 
 const loadBar = (invoke: InvokeFunction): Promise<string> => {
-  return invoke<string>("invoke_handler_bar")
+  return invoke<string>('invoke_handler_bar')
 }
 
 const loadBaz = (invoke: InvokeFunction): Promise<string> => {
-  return invoke<string>("invoke_handler_baz")
+  return invoke<string>('invoke_handler_baz')
 }
 
 // and so on ...
@@ -179,21 +179,18 @@ exported function that wraps the Tauri API behind a dynamic runtime `import()` c
 Example: create a `src/lib/tauri.ts` to re-export `invoke`
 
 ```typescript
-import type { InvokeArgs } from "@tauri-apps/api/tauri"
+import type { InvokeArgs } from '@tauri-apps/api/tauri'
 
 const isNode = (): boolean =>
-  Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) ===
-  "[object process]"
+  Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) ===
+  '[object process]'
 
-export async function invoke<T>(
-  cmd: string,
-  args?: InvokeArgs | undefined,
-): Promise<T> {
+export async function invoke<T>(cmd: string, args?: InvokeArgs | undefined): Promise<T> {
   if (isNode()) {
     // This shouldn't ever happen when React fully loads
     return Promise.resolve(undefined as unknown as T)
   }
-  const tauriAppsApi = await import("@tauri-apps/api")
+  const tauriAppsApi = await import('@tauri-apps/api')
   const tauriInvoke = tauriAppsApi.invoke
   return tauriInvoke(cmd, args)
 }

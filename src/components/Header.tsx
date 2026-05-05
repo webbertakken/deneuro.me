@@ -7,7 +7,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, useEffect, useRef, useState } from 'react'
-
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
 
@@ -72,13 +71,7 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function MobileNavItem({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) {
+function MobileNavItem({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
       <Popover.Button as={Link} href={href} className="block py-2">
@@ -88,9 +81,7 @@ function MobileNavItem({
   )
 }
 
-function MobileNavigation(
-  props: React.ComponentPropsWithoutRef<typeof Popover>,
-) {
+function MobileNavigation(props: React.ComponentPropsWithoutRef<typeof Popover>) {
   return (
     <Popover {...props}>
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
@@ -126,9 +117,7 @@ function MobileNavigation(
               <Popover.Button aria-label="Close menu" className="-m-1 p-1">
                 <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
-              <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Navigation
-              </h2>
+              <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
@@ -146,13 +135,7 @@ function MobileNavigation(
   )
 }
 
-function NavItem({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) {
+function NavItem({ href, children }: { href: string; children: React.ReactNode }) {
   const isActive = usePathname() === href
 
   return (
@@ -217,10 +200,7 @@ function clamp(number: number, a: number, b: number) {
   return Math.min(Math.max(number, min), max)
 }
 
-function AvatarContainer({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
+function AvatarContainer({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       className={clsx(
@@ -240,12 +220,7 @@ function Avatar({
   large?: boolean
 }) {
   return (
-    <Link
-      href="/"
-      aria-label="Home"
-      className={clsx(className, 'pointer-events-auto')}
-      {...props}
-    >
+    <Link href="/" aria-label="Home" className={clsx(className, 'pointer-events-auto')} {...props}>
       <Image
         src={avatarImage}
         alt=""
@@ -285,11 +260,7 @@ export function Header() {
       }
 
       const { top, height } = headerRef.current.getBoundingClientRect()
-      const scrollY = clamp(
-        window.scrollY,
-        0,
-        document.body.scrollHeight - window.innerHeight,
-      )
+      const scrollY = clamp(window.scrollY, 0, document.body.scrollHeight - window.innerHeight)
 
       if (isInitial.current) {
         setProperty('--header-position', 'sticky')
@@ -338,10 +309,7 @@ export function Header() {
       let x = (scrollY * (fromX - toX)) / downDelay + toX
       x = clamp(x, fromX, toX)
 
-      setProperty(
-        '--avatar-image-transform',
-        `translate3d(${x}rem, 0, 0) scale(${scale})`,
-      )
+      setProperty('--avatar-image-transform', `translate3d(${x}rem, 0, 0) scale(${scale})`)
 
       const borderScale = 1 / (toScale / scale)
       const borderX = (-toX + x) * borderScale
@@ -385,15 +353,13 @@ export function Header() {
             <Container
               className="top-0 order-last -mb-3 pt-3"
               style={{
-                position:
-                  'var(--header-position)' as React.CSSProperties['position'],
+                position: 'var(--header-position)' as React.CSSProperties['position'],
               }}
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{
-                  position:
-                    'var(--header-inner-position)' as React.CSSProperties['position'],
+                  position: 'var(--header-inner-position)' as React.CSSProperties['position'],
                 }}
               >
                 <div className="relative">
@@ -418,15 +384,13 @@ export function Header() {
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
           style={{
-            position:
-              'var(--header-position)' as React.CSSProperties['position'],
+            position: 'var(--header-position)' as React.CSSProperties['position'],
           }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
             style={{
-              position:
-                'var(--header-inner-position)' as React.CSSProperties['position'],
+              position: 'var(--header-inner-position)' as React.CSSProperties['position'],
             }}
           >
             <div className="relative flex gap-4">
@@ -450,12 +414,7 @@ export function Header() {
           </Container>
         </div>
       </header>
-      {isHomePage && (
-        <div
-          className="flex-none"
-          style={{ height: 'var(--content-offset)' }}
-        />
-      )}
+      {isHomePage && <div className="flex-none" style={{ height: 'var(--content-offset)' }} />}
     </>
   )
 }
