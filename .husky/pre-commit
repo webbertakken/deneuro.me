@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+yarn lint-staged
+yarn typecheck
 
-pnpm exec lint-staged
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect --staged --no-banner --redact
+fi
+
+# Run Rust checks only if Rust files staged (Tauri repo).
+if git diff --cached --name-only --diff-filter=ACM | grep -qE '^src-tauri/.+\.(rs|toml)$|^src-tauri/Cargo\.lock$'; then
+  if [ -f src-tauri/Cargo.toml ]; then
+    cd src-tauri && cargo clippy -- -D warnings && cargo test --lib && cd -
+  fi
+fi

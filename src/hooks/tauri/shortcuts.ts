@@ -14,10 +14,7 @@ import { useEffect } from 'react'
  * @param shortcut The key combination string for the shortcut
  * @param shortcutHandler The handler callback when the shortcut is triggered
  */
-export const useGlobalShortcut = (
-  shortcut: string,
-  shortcutHandler: ShortcutHandler,
-) => {
+export const useGlobalShortcut = (shortcut: string, shortcutHandler: ShortcutHandler) => {
   useEffect(() => {
     let ignore = false
 

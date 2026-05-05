@@ -4,11 +4,7 @@ interface CardProps {
   description: string
 }
 
-export const Card: React.FC<CardProps> = ({
-  url,
-  title,
-  description,
-}: CardProps) => (
+export const Card: React.FC<CardProps> = ({ url, title, description }: CardProps) => (
   <a
     href={url}
     target="_blank"

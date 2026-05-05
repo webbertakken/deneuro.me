@@ -8,12 +8,12 @@ on:
       - main
   pull_request:
     paths-ignore:
-      - "src/**"
-      - "package.json"
-      - "package-lock.json"
-      - "yarn.lock"
-      - "pnpm-lock.yaml"
-      - "README.md"
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
+      - 'README.md'
 
 jobs:
   build:

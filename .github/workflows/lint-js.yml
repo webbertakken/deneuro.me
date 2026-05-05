@@ -8,8 +8,8 @@ on:
       - main
   pull_request:
     paths-ignore:
-      - "src-tauri/**"
-      - "README.md"
+      - 'src-tauri/**'
+      - 'README.md'
 
 jobs:
   build:
@@ -59,10 +59,22 @@ jobs:
 
       - name: Install deps
         env:
-          YARN_ENABLE_HARDENED_MODE: "false"
+          YARN_ENABLE_HARDENED_MODE: 'false'
         run: |
           case "$(yarn --version)" in 1.*) echo 'expected up-to-date yarn version'; exit 1 ;; esac
           yarn install --immutable
 
-      - name: Run lint step
+      - name: Lint
         run: yarn lint
+
+      - name: Format
+        run: yarn format:check
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      - name: Test
+        run: yarn test
+
+      - name: Build (Next.js only)
+        run: yarn next-build
